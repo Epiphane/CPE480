@@ -22,7 +22,7 @@ function timeStamp() {
   var now = new Date();
 
 // Create an array with the current month, day and time
-  var date = [ now.getMonth() + 1, now.getDate(), now.getFullYear() ];
+  var date = [ now.getFullYear(), now.getMonth() + 1, now.getDate() ];
 
 // Create an array with the current hour, minute and second
   var time = [ now.getHours(), now.getMinutes(), now.getSeconds() ];

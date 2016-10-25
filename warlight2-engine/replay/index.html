@@ -6,8 +6,42 @@
 <link rel="stylesheet" type="text/css" href="http://theaigames.com/css/gameviewer-large.css?1.0.0">
 </head>
 <body class="warlight-ai-challenge-2">
-<section id="main"><nav id="menu"><ul id="menu-items"><li class="menu-item" id="menu-home"><a href="http://theaigames.com/" id="home-button" data-pjax="#page"></a></li><li class="menu-item"><a href="http://theaigames.com/competitions" data-pjax="#page">Competitions</a></li><li class="menu-item"><a href="http://theaigames.com/discussions/index" data-pjax="#page">Discussions</a></li><li class="header-text">
-         In cooperation with <a href="http://www.warlight.net" target="blank">Warlight.net</a></li><li class="sub-menu"><ul class="menu-items"><li id="user-avatar"><img src="http://gravatar.com/avatar/5685c855b95530b9f76e1970130e6f2a?d=mm&s=46"></img></li><li class="menu-item" id="user-name"><a href="http://theaigames.com/profile" data-pjax="#page">Epiphane</a></li><li class="menu-item"><a href="http://theaigames.com/sign-out" data-pjax="#page">Sign out</a></li></ul></li></ul></nav><div id="sider"><div id="sider-content"></div></div><section id="page"><header><h1></h1><nav></nav></header><div id="game"><div id="wrapper" class="warlight2-ui"><div id="warlight2-background-1" class="warlight2-background"></div><div id="gamediv" data-players="DonaldTrumpf,test_Warlight2" data-indexgame=""><div id="gridmap"></div><div class="tooltip"></div></div><div id="controls"><div id="changeViewButtons"><label for="mapView_1" checked="checked"><input type="radio" id="mapView_1" name="mapView" value="0" checked/></label><label for="mapView_2"><input type="radio" id="mapView_2" name="mapView" value="1" /></label><label for="mapView_all"><input type="radio" id="mapView_all" name="mapView" value="all" /></label></div><div id="midControl"><div id="backButtons"><input type="button" id="skipbackwardButton" class=" skipbackwardButtonImage" /><input type="button" id="backwardButton" class=" backwardButtonImage" /></div><div id="textBox"><input type="text" id="moveText" onfocus="this.blur()" readonly /><select id="moveSelector" name="moveBox" size="43"></select></div><div id="forwardButtons"><input type="button" id="playButton" class="playing" /><input type="button" id="forwardButton" class=" forwardButtonImage" /><input type="button" id="skipforwardButton" class=" skipforwardButtonImage" /></div></div><!-- midControl --><div class="slider"><div class="slider-thumb" 
+<section id="main"><nav id="menu">
+<span style="margin-top: 15px; float: left;">Change game:
+</span>
+<select id="games" style="float: left;">
+</select>
+<input id="newGame" type="submit" value="Go!" style="float: left; margin-top: 7px; margin-left: 10px;" />
+</nav></section>
+
+<section id="page"><header><h1></h1><nav></nav></header>
+<div id="game">
+<div id="wrapper" class="warlight2-ui">
+   <div id="warlight2-background-1" class="warlight2-background"></div>
+   <div id="gamediv" data-players="DonaldTrumpf,test_Warlight2" data-indexgame="">
+      <div id="gridmap"></div>
+      <div class="tooltip"></div>
+   </div>
+   <div id="controls">
+      <div id="changeViewButtons">
+      <label for="mapView_1" checked="checked">
+      <input type="radio" id="mapView_1" name="mapView" value="0" checked/>
+      </label>
+
+      <label for="mapView_2"><input type="radio" id="mapView_2" name="mapView" value="1" /></label>
+
+      <label for="mapView_all"><input type="radio" id="mapView_all" name="mapView" value="all" /></label></div>
+
+   <div id="midControl">
+   <div id="backButtons">
+   <input type="button" id="skipbackwardButton" class=" skipbackwardButtonImage" />
+   <input type="button" id="backwardButton" class=" backwardButtonImage" />
+   </div>
+   <div id="textBox"><input type="text" id="moveText" onfocus="this.blur()" readonly />
+
+   <select id="moveSelector" name="moveBox" size="43"></select>
+   </div>
+   <div id="forwardButtons"><input type="button" id="playButton" class="playing" /><input type="button" id="forwardButton" class=" forwardButtonImage" /><input type="button" id="skipforwardButton" class=" skipforwardButtonImage" /></div></div><!-- midControl --><div class="slider"><div class="slider-thumb" 
                 id="horizontal_slider"
                 style="left: 60px;"
                 onmousedown="slide(event, 'horizontal', 120, 2500, 500, 2001, 0); playSpeed=sliderValue;"></div></div></div><!-- #controls --><div id="warlight2-background-2" class="warlight2-background"></div></div><!-- #wrapper --></div></section>
@@ -19,7 +53,19 @@
 <script type="text/javascript" src="./app.js"></script>
 <script type="text/javascript" src="./warlight.js"></script>
 <script>
-window.gameId = Games[Games.length - 1];
+$('#newGame').click(function() { 
+   $('#gamediv').html('<div id="gridmap"></div><div class="tooltip"></div>');
+   window.gameId = $('#games').val();
+   window.initializeNamespace('app.competitions.warlight-ai-challenge-2');
+});
+
+Games.reverse();
+
+Games.forEach(function(gameId, index) {
+   $('#games').append($('<option value="' + gameId + '"' + (index === 0 ? 'selected' : '') + '>' + gameId + '</option>'))
+})
+
+window.gameId = Games[0];
 window.initializeNamespace('app.competitions.warlight-ai-challenge-2');
 </script>
 </body>

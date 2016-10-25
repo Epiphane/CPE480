@@ -1858,11 +1858,12 @@
         };
 
     Game = function () {
-        console.log('hi');
 
       if ((this instanceof Game) === false) {
          return new Game();
       }
+
+      window.currentGame = this;
 
       var i, player, playerColor, playerName,
             playerNames = $('#gamediv').attr('data-players').split(','),
