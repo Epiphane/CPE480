@@ -14,7 +14,9 @@ cd warlight2-engine
 
 If that doesn't work, `cd warlight2-engine` and run:
 
-javac -sourcepath src/ -d bin/ -cp lib/java-json.jar `find src/ -name '*.java' -regex '^[./A-Za-z0-9]*$'\`. Formatting is weird, that part in the `code` section actually has little ` signs but you need to add those back in because README files suck.
+```
+javac -sourcepath src/ -d bin/ -cp lib/java-json.jar `find src/ -name '*.java' -regex '^[./A-Za-z0-9]*$'\`
+```
 
 Good job you did it I'm so proud of you.
 
