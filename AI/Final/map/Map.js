@@ -3,13 +3,12 @@
  * Initializes empty lists for regions and super regions
  */
 Map = function () {
+   if (false === (this instanceof Map)) {
+      return new Map(arguments);
+   }
 
-    if (false === (this instanceof Map)) {
-        return new Map(arguments);
-    }
-
-    this.regions = {};
-    this.superRegions = {};
+   this.regions = {};
+   this.superRegions = {};
 };
 
 /**
@@ -19,12 +18,21 @@ Map = function () {
  * @return Region || null
  */
 Map.prototype.getRegionById = function (id) {
+   if (this.regions.hasOwnProperty(id)) {
+      return this.regions[id];
+   }
 
-    if (this.regions.hasOwnProperty(id)) {
-        return this.regions[id];
-    }
+   return null;
+};
 
-    return null;
+/**
+ * Map.getRegion
+ * Returns a Region instance by id or null when the region id is unknown
+ * @param string id
+ * @return Region || null
+ */
+Map.prototype.getRegion = function (id) {
+   return this.getRegionById(parseInt(id, 10));
 };
 
 /**
@@ -34,12 +42,21 @@ Map.prototype.getRegionById = function (id) {
  * @return SuperRegion || null
  */
 Map.prototype.getSuperRegionById = function (id) {
+   if (this.superRegions.hasOwnProperty(id)) {
+      return this.superRegions[id];
+   }
 
-    if (this.superRegions.hasOwnProperty(id)) {
-        return this.superRegions[id];
-    }
+   return null;
+};
 
-    return null;
+/**
+ * Map.getSuperRegion
+ * Returns a SuperRegion instance by id or null when the region id is unknown
+ * @param string id
+ * @return SuperRegion || null
+ */
+Map.prototype.getSuperRegion = function (id) {
+   return this.getSuperRegionById(parseInt(id, 10));
 };
 
 /**
@@ -49,23 +66,19 @@ Map.prototype.getSuperRegionById = function (id) {
  * @return Array
  */
 Map.prototype.getOwnedRegions = function (owner) {
+   var ownedRegions = [];
 
-    var i,
-        region,
-        ownedRegions = [];
+   for (var i in this.regions) {
+      if (this.regions.hasOwnProperty(i)) {
+         var region = this.regions[i];
 
-    for (i in this.regions) {
+         if (region.owner === owner) {
+            ownedRegions.push(region);
+         }
+      }       
+   }
 
-        if (this.regions.hasOwnProperty(i)) {
-            region = this.regions[i];
-
-            if (region.owner === owner) {
-                ownedRegions.push(region);
-            }
-        }       
-    }
-
-    return ownedRegions;
+   return ownedRegions;
 };
 
 

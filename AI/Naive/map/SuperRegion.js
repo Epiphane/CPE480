@@ -6,13 +6,14 @@
  * @param int worth
  */
 SuperRegion = function (id, bonus) {
-   if (false === ( this instanceof SuperRegion)) {
-      return new SuperRegion(arguments);
-   }
 
-   this.id = id;
-   this.bonus = bonus;
-   this.regions = {};
+    if (false === ( this instanceof SuperRegion)) {
+        return new SuperRegion(arguments);
+    }
+
+    this.id = id;
+    this.bonus = bonus;
+    this.regions = {};
 };
 
 module.exports = SuperRegion;
