@@ -67,14 +67,14 @@ fs.createReadStream(mapdir + '/mapdata').pipe(fs.createWriteStream(dir + '/mapda
 const spawn = require('child_process').spawn;
 const game = spawn('java', ['-cp', 'lib/java-json.jar:bin', 'com.theaigames.game.warlight2.Warlight2', mapdir + '/map', b1, b2, dir + '/data', dir + '/map']);
 
-game.stdout.on('data', (data) => {
+game.stdout.on('data', function(data) {
    process.stdout.write(data);
 });
 
-game.stderr.on('data', (data) => {
+game.stderr.on('data', function(data) {
    process.stdout.write(data);
 });
 
-game.on('close', (code) => {
+game.on('close', function(code) {
   console.log("Game " + game_id + " complete");
 });

@@ -54,6 +54,6 @@ cd warlight2-engine/replay
 http-server
 ```
 
-If this doesn't work (IT WONT THE FIRST TIME), run `npm install -g http-server` and then try again. If you don't have npm go install Node (https://nodejs.org/en/).
+If this doesn't work (IT WONT THE FIRST TIME), run `sudo npm install -g http-server` and then try again. If you don't have npm go install Node (https://nodejs.org/en/).
 
 Yay you made a webserver. Go to http://localhost:8080 to see your game in action. You can watch any game you've run on your computer.
