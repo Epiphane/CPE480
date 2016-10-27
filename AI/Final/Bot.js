@@ -97,7 +97,8 @@ Bot.prototype.setupMap = function (data) {
 
    if (command in bot) {
       bot[command](data);
-   } else {
+   }
+   else {
       process.stderr.write('Unable to understand command: ' + command + ', with data: ' + data + '\n');
    }
 };
@@ -153,25 +154,25 @@ Bot.prototype.setupRegions = function (data) {
  * @param Array data
  */
 Bot.prototype.setupNeighbors = function (data) {
-    var region, neighbor, neighborIds;
+   var region, neighbor, neighborIds;
 
-    // loop through data in pairs of two
-    for (var i = 0; i + 1 < data.length; i += 2) {
-        // get region by id
-        region = this.map.getRegion(data[i]);
+   // loop through data in pairs of two
+   for (var i = 0; i + 1 < data.length; i += 2) {
+      // get region by id
+      region = this.map.getRegion(data[i]);
 
-        // strip the string of brackets and convert to array
-        neighborIds = data[i + 1].replace('[', '').replace(']', '').split(',');
+      // strip the string of brackets and convert to array
+      neighborIds = data[i + 1].replace('[', '').replace(']', '').split(',');
 
-        for (var j = 0; j < neighborIds.length; j++) {
-            // get the neighbor by Id
-            neighbor = this.map.getRegion(neighborIds[j]);
+      for (var j = 0; j < neighborIds.length; j++) {
+         // get the neighbor by Id
+         neighbor = this.map.getRegion(neighborIds[j]);
 
-            // connect region with its neighbor
-            neighbor.neighbors.push(region);
-            region.neighbors.push(neighbor);
-        }
-    }
+         // connect region with its neighbor
+         neighbor.neighbors.push(region);
+         region.neighbors.push(neighbor);
+      }
+   }
 };
 
 /**
@@ -181,16 +182,14 @@ Bot.prototype.setupNeighbors = function (data) {
  * @param Array data
  */
 Bot.prototype.setupWastelands = function (data) {
-    var region;
+   // loop through data in pairs of two
+   for (var i = 0; i < data.length; i += 1) {
+      // get region by id
+      var region = this.map.getRegion(data[i]);
 
-    // loop through data in pairs of two
-    for (var i = 0; i < data.length; i += 1) {
-        // get region by id
-        region = this.map.getRegion(data[i]);
-
-        // this really shouldn't be hard coded
-        region.troopCount = 6;
-    }
+      // this really shouldn't be hard coded
+      region.troopCount = 6;
+   }
 };
 
 /**
@@ -200,12 +199,10 @@ Bot.prototype.setupWastelands = function (data) {
  * @param Array data
  */
 Bot.prototype.updateMap = function (data) {
-   var region;
-
    // loop through data in pais of three
    for (var i = 0; i < data.length; i += 3) {
       // get region by id
-      region = this.map.getRegionById(data[i]);
+      var region = this.map.getRegionById(data[i]);
 
       // update region owner
       region.owner = data[i + 1];
@@ -224,12 +221,11 @@ Bot.prototype.updateMap = function (data) {
  * @return String
  */
 Bot.prototype.pickStartingRegion = function (data) {
+   // shuffle the regions and return the first item
+   var randomRegion = data.shuffle().slice(0, 1);
 
-    // shuffle the regions and return the first item
-    var randomRegion = data.shuffle().slice(0, 1);
-
-    // parse to string
-    return '' + randomRegion;
+   // parse to string
+   return '' + randomRegion;
 };
 
 /**
@@ -240,16 +236,17 @@ Bot.prototype.pickStartingRegion = function (data) {
  * @return string
  */
 Bot.prototype.go = function (data) {
-    // get the input command and convert to camel case
-    command = data.shift().toCamelCase();
+   // get the input command and convert to camel case
+   command = data.shift().toCamelCase();
 
-    // invoke command if function exists and pass the data along
-    // then return response if exists
-    if (command in bot) {
-        return bot[command](data);
-    } else {
-        process.stderr.write('Unable to understand command: ' + command + ', with data: ' + data + '\n');
-    }
+   // invoke command if function exists and pass the data along
+   // then return response if exists
+   if (command in bot) {
+      return bot[command](data);
+   } 
+   else {
+      process.stderr.write('Unable to understand command: ' + command + ', with data: ' + data + '\n');
+   }
 };
 
 /**
