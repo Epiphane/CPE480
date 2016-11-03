@@ -15,9 +15,8 @@ var bot,
     Region          = require('./map/Region.js'),
     PossibleOwners  = require('./map/PossibleOwners.js'),
     readline        = require('readline'),
-    http            = require('http');
-
-process.stderr.write("hello world\n");
+    http            = require('http'),
+    Chromosome      = require('./chromosome');
 
 /**
  * Main class
@@ -33,6 +32,9 @@ Bot = function () {
 
    // initialize map
    this.map = new Map();
+   this.previousStartingOptions = null;
+
+   this.chromosome = new Chromosome();
 }
 
 /**
@@ -195,6 +197,23 @@ Bot.prototype.setupWastelands = function (data) {
 };
 
 /**
+ * Bot.setupOpponentStartingRegions
+ * Confirms that we correctly identified the starting regions.
+ *
+ * @param Array data
+ */
+Bot.prototype.setupOpponentStartingRegions = function(data) {
+   var self = this;
+
+   data.forEach(function(region) {
+      if (self.map.getRegion(region).owner !== PossibleOwners.OPPONENT) {
+         self.map.getRegion(region).owner = PossibleOwners.OPPONENT;
+         console.error('We failed to notice the opponent pick region', region);
+      }
+   });
+};
+
+/**
  * Bot.updateMap
  * Is used to update our map every round
  *
@@ -223,8 +242,25 @@ Bot.prototype.updateMap = function (data) {
  * @return String
  */
 Bot.prototype.pickStartingRegion = function (data) {
-   // shuffle the regions and return the first item
-   var randomRegion = data.shuffle().slice(0, 1);
+   var self = this;
+   var timebank = data.shift();
+   if (this.previousStartingOptions) {
+      this.previousStartingOptions.forEach(function(region) {
+         if (data.indexOf(region) < 0) {
+            self.map.getRegion(region).owner = PossibleOwners.OPPONENT;
+         }
+      });
+   }
+
+   var shuffled = data.sort(function(a, b) {
+      var regionA = self.map.getRegion(a);
+      var regionB = self.map.getRegion(b);
+
+      return regionA.score(self.chromosome, self.map) - regionB.score(self.chromosome, self.map);
+   });
+   var randomRegion = data.pop();
+
+   this.previousStartingOptions = data;
 
    // parse to string
    return '' + randomRegion;

@@ -18,6 +18,14 @@ Region = function (id, superRegion) {
    this.troopCount = 2;
    this.isOnEmpireBorder = false;
    this.isOnSuperRegionBorder = false;
+
+   this.pickingScore = 0;
 }
+
+Region.prototype.score = function(chromosome, map) {
+   var priority = chromosome.initial;
+
+   return this.neighbors.length * priority.borders;
+};
 
 module.exports = Region;
