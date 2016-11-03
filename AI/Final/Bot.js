@@ -258,7 +258,9 @@ Bot.prototype.pickStartingRegion = function (data) {
 
       return regionA.score(self.chromosome, self.map) - regionB.score(self.chromosome, self.map);
    });
+   
    var randomRegion = data.pop();
+   this.map.getRegion(randomRegion).pickRegion();
 
    this.previousStartingOptions = data;
 
