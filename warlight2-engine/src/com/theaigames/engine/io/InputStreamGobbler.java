@@ -33,7 +33,8 @@ public class InputStreamGobbler extends Thread {
 	
 	private InputStream inputStream;
 	private IOPlayer player;
-	private String type;
+    private String type;
+	public String playerPrefix;
 	private StringBuffer buffer;
 
 	InputStreamGobbler(InputStream inputStream, IOPlayer player, String type) {
@@ -54,6 +55,8 @@ public class InputStreamGobbler extends Thread {
                 if (!lastLine.contains("VM warning") && buffer.length() < 1000000) { //catches bots that return way too much (infinite loop)
                     if (this.type.equals("output"))
                 	   this.player.response = lastLine;
+                    if (this.type.equals("error"))
+                        System.out.println(this.playerPrefix + lastLine);
                     buffer.append(lastLine + "\n");
                 }
             }

@@ -17,6 +17,8 @@ var bot,
     readline        = require('readline'),
     http            = require('http');
 
+process.stderr.write("hello world\n");
+
 /**
  * Main class
  * Initializes a map instance and an empty settings object

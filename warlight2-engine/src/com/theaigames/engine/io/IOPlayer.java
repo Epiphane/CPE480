@@ -42,10 +42,11 @@ public class IOPlayer implements Runnable {
     
     public String response;
     
-    public IOPlayer(Process process) {
+    public IOPlayer(Process process, String prefix) {
         this.inputStream = new OutputStreamWriter(process.getOutputStream());
     	this.outputGobbler = new InputStreamGobbler(process.getInputStream(), this, "output");
     	this.errorGobbler = new InputStreamGobbler(process.getErrorStream(), this, "error");
+        this.errorGobbler.playerPrefix = prefix;
         this.process = process;
         this.dump = new StringBuilder();
         this.errorCounter = 0;

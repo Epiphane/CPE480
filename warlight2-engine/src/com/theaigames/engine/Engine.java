@@ -61,13 +61,13 @@ public class Engine implements BotCommunication {
     
     @Override
     // Adds a player to the game
-    public void addPlayer(String command) throws IOException {
+    public void addPlayer(String command, String prefix) throws IOException {
 
         // Create new process
         Process process = Runtime.getRuntime().exec(command);
 
         // Attach IO to process
-        IOPlayer player = new IOPlayer(process);
+        IOPlayer player = new IOPlayer(process, prefix);
         
         // Add player
         this.players.add(player);

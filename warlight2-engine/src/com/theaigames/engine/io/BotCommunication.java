@@ -28,7 +28,7 @@ import java.io.IOException;
  */
 public interface BotCommunication {
     
-    public void addPlayer(String command) throws IOException;
+    public void addPlayer(String command, String prefix) throws IOException;
     
     public void start() throws Exception;
 }

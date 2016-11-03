@@ -294,8 +294,8 @@ public class Warlight2 implements Logic
 		String mapFile = args[0];
 		String bot1Cmd = args[1];
 		String bot2Cmd = args[2];
-		String dataFile = args[3];
-		String mapDataFile = args[4];
+		String dataFile = (args.length > 3 ? args[3] : ".data");
+		String mapDataFile = (args.length > 4 ? args[4] : ".mapdata");
 
 		Logger dataLogger = new Logger(dataFile);
 		Logger mapDataLogger = new Logger(mapDataFile);
@@ -307,8 +307,8 @@ public class Warlight2 implements Logic
         engine.setLogic(new Warlight2(mapFile, dataLogger, mapDataLogger));
 		
         // Add players
-        engine.addPlayer(bot1Cmd);
-        engine.addPlayer(bot2Cmd);
+        engine.addPlayer(bot1Cmd, "P1: ");
+        engine.addPlayer(bot2Cmd, "P2: ");
 		
         engine.start();
 
