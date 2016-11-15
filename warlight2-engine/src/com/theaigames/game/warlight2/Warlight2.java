@@ -85,8 +85,6 @@ public class Warlight2 implements Logic
 		
 		Map initMap, map;
 		
-		System.out.println("setting up game");
-		
         // Determine array size is two players
         if (players.size() != 2) {
             throw new IncorrectPlayerCountException("Should be two players");

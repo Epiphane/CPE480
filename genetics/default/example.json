@@ -1,0 +1,15 @@
+{
+   "initial": {
+      "borders": 0.4,
+      "allyDist": 0.6,
+      "enemyDist": 1,
+      "superRegionSize": -0.1,
+      "superRegionClaimedAlly": 0.5,
+      "superRegionClaimedEnemy": 0.5,
+      "superRegionBorders": -1,
+      "superRegionWastelands": -1,
+      "superRegionBonus": 2,
+      "superRegionBonusPerRegion": 3,
+      "isSuperRegionBorder": -0.5
+   }
+}
