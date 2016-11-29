@@ -32,36 +32,38 @@ Region.prototype.score = function(chromosome, map) {
       score += priority.allyDist * this.nearestAlly;
    }
 
+   var superRegion = map.superRegions[this.superRegion];
+
    // TODO
    // "enemyDist": 1,
 
 
    // "superRegionSize": -0.1,
-   score += priority.superRegionSize * this.superRegion.regions.length
+   score += priority.superRegionSize * superRegion.regions.length
 
    // "superRegionBonus": 2,
-   score += priority.superRegionBonus * this.superRegion.bonus
+   score += priority.superRegionBonus * superRegion.bonus
 
    // superRegionBonusPerRegion": 3,
    score += priority.superRegionBonusPerRegion *
-      (this.superRegion.bonus / this.superRegion.regions.length)
+      (superRegion.bonus / superRegion.regions.length)
 
-   for (var i in this.superRegion.regions) {
-      if (this.superRegion.regions[i].owner == PossibleOwners.PLAYER) {
+   for (var i in superRegion.regions) {
+      if (superRegion.regions[i].owner == PossibleOwners.PLAYER) {
          // "superRegionClaimedAlly": 0.5,
          score += priority.superRegion.superRegionClaimedAlly
-      } else if (this.superRegion.regions[i].owner == PossibleOwners.OPPONENT) {
+      } else if (superRegion.regions[i].owner == PossibleOwners.OPPONENT) {
          // "superRegionClaimedEnemy": 0.5,
          score += priority.superRegion.superRegionClaimedEnemy
       }
 
       //  "isSuperRegionBorder": -0.5
-      if (this.superRegion.regions[i].isOnSuperRegionBorder) {
+      if (superRegion.regions[i].isOnSuperRegionBorder) {
          score += priority.isSuperRegionBorder
       }
 
       // "superRegionWastelands": -1,
-      if (this.superRegion.regions[i].troopCount == 6) {
+      if (superRegion.regions[i].troopCount == 6) {
          score += priority.superRegionWastelands
       }
 

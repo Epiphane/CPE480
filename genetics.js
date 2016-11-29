@@ -49,6 +49,8 @@ function writeRandomChromosome(system_name, gen, child) {
 }
 
 function getExistingChromosomeNames(system_name, gen) {
+   if (!fs.existsSync('./genetics/' + system_name))
+      fs.mkdirSync('./genetics/' + system_name);
    if (!fs.existsSync('./genetics/' + system_name + '/gen_' + gen))
       fs.mkdirSync('./genetics/' + system_name + '/gen_' + gen);
    return fs.readdirSync('./genetics/' + system_name + '/gen_' + gen);
