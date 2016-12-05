@@ -11,5 +11,21 @@
       "superRegionBonus": 2,
       "superRegionBonusPerRegion": 3,
       "isSuperRegionBorder": -0.5
+   },
+   "reinforce": {
+      "armies": 0,
+      "enemyBorders": 0,
+      "enemyBigArmy": 0,
+      "enemyAvgArmy": 0,
+      "allyBorders": 0,
+      "allyBigArmy": 0,
+      "allyAvgArmy": 0,
+      "neutralBorders": 0,
+      "wastelandBorders": 0,
+      "SuperRegionClaimedAlly": 0,
+      "neutralBordersInSuperRegion": 0
+   },
+   "attacktransfer": {
+      
    }
 }
