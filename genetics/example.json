@@ -13,19 +13,39 @@
       "isSuperRegionBorder": -0.5
    },
    "reinforce": {
-      "armies": 0,
-      "enemyBorders": 0,
-      "enemyBigArmy": 0,
-      "enemyAvgArmy": 0,
-      "allyBorders": 0,
-      "allyBigArmy": 0,
-      "allyAvgArmy": 0,
-      "neutralBorders": 0,
-      "wastelandBorders": 0,
-      "SuperRegionClaimedAlly": 0,
-      "neutralBordersInSuperRegion": 0
+      "initial": 0.2,
+      "armies": -0.5,
+      "enemyBorders": 1,
+      "enemyBigArmy": 1.2,
+      "enemyAvgArmy": 2,
+      "allyBorders": -0.5,
+      "allyBigArmy": -1.0,
+      "allyAvgArmy": -1.5,
+      "neutralBorders": 0.2,
+      "wastelandBorders": -0.1,
+      "superRegionClaimedAlly": 2,
+      "inverseReminingInSuperRegion": 2,
+      "neutralBordersInSuperRegion": 2,
+      "enemyBordersInSuperRegion": 3
    },
-   "attacktransfer": {
-      
+   "attack": {
+      "neutral": 0.5,
+      "myExposedBorders": -0.125,
+      "myTroopCount": 0.2,
+      "enemyTroopCount": -0.6,
+      "reinforce": -0.05,
+      "inSameSuperRegion": 0.2,
+      "inverseReminingInSuperRegion": 1,
+      "isSuperRegionClaimedEnemy": 5,
+      "myExpectedLosses": -0.1,
+      "enemyExpectedLosses": 0.1,
+      "myTroopAdvantagePercent": 1,
+      "myTroopAdvantagePercentBreakEven": 1.67,
+      "gainRegion": 3
+   },
+   "transfer": {
+      "myTroopCount": 0.2,
+      "myReinforce": -0.5,
+      "allyReinforce": 0.5
    }
 }

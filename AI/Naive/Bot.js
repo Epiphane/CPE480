@@ -159,6 +159,15 @@ Bot.prototype.setupRegions = function (data) {
 };
 
 /**
+ * Bot.setupOpponentStartingRegions
+ * Confirms that we correctly identified the starting regions.
+ *
+ * @param Array data
+ */
+Bot.prototype.setupOpponentStartingRegions = function(data) {
+};
+
+/**
  * Bot.setupNeighbors
  * Is used to update each regions neighbors according to data
  *
