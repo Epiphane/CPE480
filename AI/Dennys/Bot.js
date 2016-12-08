@@ -509,6 +509,7 @@ Bot.prototype.attackTransfer = function (data) {
             if (unclaimedInSR > 0) {
                score += attack.inverseReminingInSuperRegion / unclaimedInSR;
             }
+               console.error('score', score);
          }
 
          // console.error('score', score);

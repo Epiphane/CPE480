@@ -491,8 +491,9 @@ Bot.prototype.attackTransfer = function (data) {
             score += (attack.enemyExpectedLosses || 0) * enemyExpectedLosses;
 
             if (attack.gainRegion && enemyExpectedLosses >= targetRegion.troopCount) {
-               console.error('Would gain region');
+               console.error('Would gain region: ' + score);
                score += attack.gainRegion;
+               console.error('score', score);
             }
 
             score += attack.reinforce * region.reinforceScore(this.chromosome, this.map);

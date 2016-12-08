@@ -53,7 +53,7 @@ var Chromosome = module.exports = function() {
        "enemyExpectedLosses": -7.671446255873889,
        "myTroopAdvantagePercent": -0.8611615032423288,
        "myTroopAdvantagePercentBreakEven": -13.39459255126096,
-       "gainRegion": 7.4197282968088984
+       "gainRegion": 1005.4197282968088984
      },
      "transfer": {
        "myTroopCount": -8.655087116368904,
