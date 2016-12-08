@@ -2,3 +2,4 @@ builds/*
 warlight2-engine/replay/games/*
 warlight2-engine/replay/games.js
 genetics/**/*.json
+notaphase/*
